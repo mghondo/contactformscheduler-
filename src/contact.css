@@ -10,3 +10,10 @@
     font-size: 36px;
     margin: 0;
   }
+
+  .react-datepicker__input-container {
+    position: relative;
+    display: inline-block;
+    width: 120%;
+    align-items: center;
+}

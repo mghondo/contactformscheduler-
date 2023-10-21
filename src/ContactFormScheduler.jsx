@@ -92,8 +92,26 @@ function ContactFormScheduler() {
         <h1 className="cool-header">Basic Calendar Picker</h1>
       </header>
       <Form onSubmit={handleSubmit}>
+
         <Row>
           <Col xs={12} md={6}>
+          <Form.Group controlId="dateTime" className="form-group" style={{width: '120%', alignContent: 'center'}}>
+          <Form.Label>Choose Date and Time</Form.Label><br />
+          <DatePicker
+            selected={formData.dateTime}
+            onChange={handleDateChange}
+            showTimeSelect
+            timeFormat="h:mm aa" // Change the time format here
+            timeIntervals={30}
+            timeCaption="Time"
+            dateFormat="MMMM d, yyyy h:mm aa"
+            minDate={new Date()}
+            minTime={new Date().setHours(8, 0, 0, 0)}
+            maxTime={new Date().setHours(20, 0, 0, 0)}
+            className="form-control" // Bootstrap class
+            required // Required field
+          />
+        </Form.Group>
             <Form.Group controlId="firstName">
               <Form.Label>First Name</Form.Label>
               <Form.Control
@@ -138,9 +156,10 @@ function ContactFormScheduler() {
                 required // Required field
               />
             </Form.Group>
+
           </Col>
           <Col xs={12} md={6}>
-            <Form.Group controlId="street1" className="form-group">
+          <Form.Group controlId="street1" className="form-group">
               <Form.Label>Street 1</Form.Label>
               <Form.Control
                 type="text"
@@ -203,30 +222,16 @@ function ContactFormScheduler() {
             </Form.Group>
           </Col>
         </Row>
-        <Form.Group controlId="dateTime" className="form-group">
-          <Form.Label>Choose Date and Time</Form.Label><br />
-          <DatePicker
-            selected={formData.dateTime}
-            onChange={handleDateChange}
-            showTimeSelect
-            timeFormat="h:mm aa" // Change the time format here
-            timeIntervals={30}
-            timeCaption="Time"
-            dateFormat="MMMM d, yyyy h:mm aa"
-            minDate={new Date()}
-            minTime={new Date().setHours(8, 0, 0, 0)}
-            maxTime={new Date().setHours(20, 0, 0, 0)}
-            className="form-control" // Bootstrap class
-            required // Required field
-          />
-        </Form.Group>
-        <Button type="submit" variant="primary" className="btn btn-primary">
-          Submit
-        </Button>
+<br/>
+        <div style={{ textAlign: 'center' }}>
+          <Button type="submit" variant="primary" className="btn btn-primary">
+            Submit
+          </Button>
+        </div>
       </Form>
       {confirmation && (
-        <div className="mt-4" style={{ paddingBottom: '30px' }}>
-          <h4>Confirmation Data</h4>
+        <div className="mt-4" style={{ paddingBottom: '30px', textAlign: 'left' }}>
+          <h4 style={{textAlign: 'center'}}>Confirmation Data</h4>
           {renderConfirmationList(confirmation)}
         </div>
       )}
