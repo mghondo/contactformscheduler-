@@ -1,0 +1,12 @@
+.app-header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .cool-header {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    margin: 0;
+  }

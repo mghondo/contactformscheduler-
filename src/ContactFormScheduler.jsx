@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import './contact.css';
 
 function ContactFormScheduler() {
   const [formData, setFormData] = useState({
@@ -58,10 +59,14 @@ function ContactFormScheduler() {
 
   return (
     <Container>
+
+<header className="app-header" style={{padding: '30px', marginBottom: '30px'}}>
+        <h1 className="cool-header">Basic Calendar Picker</h1>
+      </header>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col xs={12} md={6}>
-            <Form.Group controlId="firstName">
+            <Form.Group controlId="firstName" className="form-group">
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 type="text"
@@ -73,7 +78,7 @@ function ContactFormScheduler() {
             </Form.Group>
           </Col>
           <Col xs={12} md={6}>
-            <Form.Group controlId="lastName">
+            <Form.Group controlId="lastName" className="form-group">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 type="text"
@@ -85,7 +90,7 @@ function ContactFormScheduler() {
             </Form.Group>
           </Col>
         </Row>
-        <Form.Group controlId="phone">
+        <Form.Group controlId="phone" className="form-group">
           <Form.Label>Phone</Form.Label>
           <Form.Control
             type="tel"
@@ -95,7 +100,7 @@ function ContactFormScheduler() {
             className="form-control" // Bootstrap class
           />
         </Form.Group>
-        <Form.Group controlId="email">
+        <Form.Group controlId="email" className="form-group">
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
@@ -105,7 +110,7 @@ function ContactFormScheduler() {
             className="form-control" // Bootstrap class
           />
         </Form.Group>
-        <Form.Group controlId="address">
+        <Form.Group controlId="address" className="form-group">
           <Form.Label>Delivery Address</Form.Label>
           <Form.Control
             as="textarea"
@@ -116,8 +121,8 @@ function ContactFormScheduler() {
             className="form-control" // Bootstrap class
           />
         </Form.Group>
-        <Form.Group controlId="dateTime">
-          <Form.Label>Choose Date and Time</Form.Label>
+        <Form.Group controlId="dateTime" className="form-group">
+          <Form.Label>Choose Date and Time</Form.Label><br/>
           <DatePicker
             selected={formData.dateTime}
             onChange={handleDateChange}
