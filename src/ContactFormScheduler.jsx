@@ -94,7 +94,7 @@ function ContactFormScheduler() {
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col xs={12} md={6}>
-            <Form.Group controlId="firstName" className="form-group">
+            <Form.Group controlId="firstName">
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 type="text"
@@ -102,10 +102,9 @@ function ContactFormScheduler() {
                 value={formData.firstName}
                 onChange={handleChange}
                 className="form-control" // Bootstrap class
+                required // Required field
               />
             </Form.Group>
-          </Col>
-          <Col xs={12} md={6}>
             <Form.Group controlId="lastName" className="form-group">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
@@ -114,87 +113,96 @@ function ContactFormScheduler() {
                 value={formData.lastName}
                 onChange={handleChange}
                 className="form-control" // Bootstrap class
+                required // Required field
+              />
+            </Form.Group>
+            <Form.Group controlId="phone" className="form-group">
+              <Form.Label>Phone</Form.Label>
+              <Form.Control
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className="form-control" // Bootstrap class
+                required // Required field
+              />
+            </Form.Group>
+            <Form.Group controlId="email" className="form-group">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="form-control" // Bootstrap class
+                required // Required field
+              />
+            </Form.Group>
+          </Col>
+          <Col xs={12} md={6}>
+            <Form.Group controlId="street1" className="form-group">
+              <Form.Label>Street 1</Form.Label>
+              <Form.Control
+                type="text"
+                name="street1"
+                value={formData.street1}
+                onChange={handleChange}
+                className="form-control" // Bootstrap class
+                required // Required field
+              />
+            </Form.Group>
+            <Form.Group controlId="street2" className="form-group">
+              <Form.Label>Street 2</Form.Label>
+              <Form.Control
+                type="text"
+                name="street2"
+                value={formData.street2}
+                onChange={handleChange}
+                className="form-control" // Bootstrap class
+              />
+            </Form.Group>
+            <Form.Group controlId="city" className="form-group">
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                type="text"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                className="form-control" // Bootstrap class
+                required // Required field
+              />
+            </Form.Group>
+            <Form.Group controlId="state" className="form-group">
+              <Form.Label>State</Form.Label>
+              <Form.Control
+                as="select"
+                name="state"
+                value={formData.state}
+                onChange={handleChange}
+                className="form-control" // Bootstrap class
+                required // Required field
+              >
+                <option value="">Select State</option>
+                {statesList.map((state, index) => (
+                  <option key={index} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+            <Form.Group controlId="zip" className="form-group">
+              <Form.Label>ZIP</Form.Label>
+              <Form.Control
+                type="text"
+                name="zip"
+                value={formData.zip}
+                onChange={handleChange}
+                className="form-control" // Bootstrap class
+                required // Required field
               />
             </Form.Group>
           </Col>
         </Row>
-        <Form.Group controlId="phone" className="form-group">
-          <Form.Label>Phone</Form.Label>
-          <Form.Control
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            className="form-control" // Bootstrap class
-          />
-        </Form.Group>
-        <Form.Group controlId="email" className="form-group">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="form-control" // Bootstrap class
-          />
-        </Form.Group>
-        <Form.Group controlId="street1" className="form-group">
-          <Form.Label>Street 1</Form.Label>
-          <Form.Control
-            type="text"
-            name="street1"
-            value={formData.street1}
-            onChange={handleChange}
-            className="form-control" // Bootstrap class
-          />
-        </Form.Group>
-        <Form.Group controlId="street2" className="form-group">
-          <Form.Label>Street 2</Form.Label>
-          <Form.Control
-            type="text"
-            name="street2"
-            value={formData.street2}
-            onChange={handleChange}
-            className="form-control" // Bootstrap class
-          />
-        </Form.Group>
-        <Form.Group controlId="city" className="form-group">
-          <Form.Label>City</Form.Label>
-          <Form.Control
-            type="text"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-            className="form-control" // Bootstrap class
-          />
-        </Form.Group>
-        <Form.Group controlId="state" className="form-group">
-          <Form.Label>State</Form.Label>
-          <Form.Control
-            as="select"
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-            className="form-control" // Bootstrap class
-          >
-            <option value="">Select State</option>
-            {statesList.map((state, index) => (
-              <option key={index} value={state}>
-                {state}
-              </option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-        <Form.Group controlId="zip" className="form-group">
-          <Form.Label>ZIP</Form.Label>
-          <Form.Control
-            type="text"
-            name="zip"
-            value={formData.zip}
-            onChange={handleChange}
-            className="form-control" // Bootstrap class
-          />
-        </Form.Group>
         <Form.Group controlId="dateTime" className="form-group">
           <Form.Label>Choose Date and Time</Form.Label><br />
           <DatePicker
@@ -209,6 +217,7 @@ function ContactFormScheduler() {
             minTime={new Date().setHours(8, 0, 0, 0)}
             maxTime={new Date().setHours(20, 0, 0, 0)}
             className="form-control" // Bootstrap class
+            required // Required field
           />
         </Form.Group>
         <Button type="submit" variant="primary" className="btn btn-primary">

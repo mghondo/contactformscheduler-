@@ -19,3 +19,11 @@ The state section has a picklist of all 50 states.
 ### `Email section`
 
 The email section requires an @ symbol and will not submit without it.
+
+### `Required Fields`
+
+All fields are required except Street2
+
+### `<Col> Separator`
+
+Two rows are in place so everything can be seen on a Laptop/Desktop at once.
