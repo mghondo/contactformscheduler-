@@ -17,7 +17,6 @@ function ContactFormScheduler() {
   const validDate = (current) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-
     return current.isAfter(today);
   };
 
@@ -37,7 +36,7 @@ function ContactFormScheduler() {
     return false;
   };
 
-  const [confirmation, setConfirmation] = useState('');
+  const [confirmation, setConfirmation] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,15 +51,31 @@ function ContactFormScheduler() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can handle form submission logic here.
-    // For now, we'll just display the entered data as confirmation.
-    setConfirmation(JSON.stringify(formData, null, 2));
+
+    // Format the entire formData object for display
+    const formattedFormData = {
+      ...formData,
+      dateTime: formData.dateTime ? formData.dateTime.toLocaleString() : null,
+    };
+
+    setConfirmation(formattedFormData);
+  };
+
+  const renderConfirmationList = (data) => {
+    return (
+      <ul className="list-group">
+        {Object.entries(data).map(([key, value]) => (
+          <li className="list-group-item" key={key}>
+            <strong>{key}:</strong> {value}
+          </li>
+        ))}
+      </ul>
+    );
   };
 
   return (
     <Container>
-
-<header className="app-header" style={{padding: '30px', marginBottom: '30px'}}>
+      <header className="app-header" style={{ padding: '30px', marginBottom: '30px' }}>
         <h1 className="cool-header">Basic Calendar Picker</h1>
       </header>
       <Form onSubmit={handleSubmit}>
@@ -122,7 +137,7 @@ function ContactFormScheduler() {
           />
         </Form.Group>
         <Form.Group controlId="dateTime" className="form-group">
-          <Form.Label>Choose Date and Time</Form.Label><br/>
+          <Form.Label>Choose Date and Time</Form.Label><br />
           <DatePicker
             selected={formData.dateTime}
             onChange={handleDateChange}
@@ -142,9 +157,9 @@ function ContactFormScheduler() {
         </Button>
       </Form>
       {confirmation && (
-        <div className="mt-4">
+        <div className="mt-4" style={{paddingBottom: '30px'}}>
           <h4>Confirmation Data</h4>
-          <pre>{confirmation}</pre>
+          {renderConfirmationList(confirmation)}
         </div>
       )}
     </Container>
