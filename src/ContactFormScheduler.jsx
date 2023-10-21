@@ -86,6 +86,11 @@ function ContactFormScheduler() {
     'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
   ];
 
+  const handleReset = () => {
+    // Reload the page to reset the form
+    window.location.reload();
+  };
+
   return (
     <Container>
       <header className="app-header" style={{ padding: '30px', marginBottom: '30px' }}>
@@ -112,7 +117,7 @@ function ContactFormScheduler() {
             required // Required field
           />
         </Form.Group>
-            <Form.Group controlId="firstName">
+            <Form.Group controlId="firstName" className='formMorgan'>
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 type="text"
@@ -123,7 +128,7 @@ function ContactFormScheduler() {
                 required // Required field
               />
             </Form.Group>
-            <Form.Group controlId="lastName" className="form-group">
+            <Form.Group controlId="lastName" className='formMorgan'>
               <Form.Label>Last Name</Form.Label>
               <Form.Control
                 type="text"
@@ -134,7 +139,7 @@ function ContactFormScheduler() {
                 required // Required field
               />
             </Form.Group>
-            <Form.Group controlId="phone" className="form-group">
+            <Form.Group controlId="phone" className='formMorgan'>
               <Form.Label>Phone</Form.Label>
               <Form.Control
                 type="tel"
@@ -145,7 +150,7 @@ function ContactFormScheduler() {
                 required // Required field
               />
             </Form.Group>
-            <Form.Group controlId="email" className="form-group">
+            <Form.Group controlId="email" className='formMorgan'>
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -159,7 +164,7 @@ function ContactFormScheduler() {
 
           </Col>
           <Col xs={12} md={6}>
-          <Form.Group controlId="street1" className="form-group">
+          <Form.Group controlId="street1" className='formMorgan'>
               <Form.Label>Street 1</Form.Label>
               <Form.Control
                 type="text"
@@ -170,7 +175,7 @@ function ContactFormScheduler() {
                 required // Required field
               />
             </Form.Group>
-            <Form.Group controlId="street2" className="form-group">
+            <Form.Group controlId="street2" className='formMorgan'>
               <Form.Label>Street 2</Form.Label>
               <Form.Control
                 type="text"
@@ -180,7 +185,7 @@ function ContactFormScheduler() {
                 className="form-control" // Bootstrap class
               />
             </Form.Group>
-            <Form.Group controlId="city" className="form-group">
+            <Form.Group controlId="city" className='formMorgan'>
               <Form.Label>City</Form.Label>
               <Form.Control
                 type="text"
@@ -191,7 +196,7 @@ function ContactFormScheduler() {
                 required // Required field
               />
             </Form.Group>
-            <Form.Group controlId="state" className="form-group">
+            <Form.Group controlId="state" className='formMorgan'>
               <Form.Label>State</Form.Label>
               <Form.Control
                 as="select"
@@ -209,7 +214,7 @@ function ContactFormScheduler() {
                 ))}
               </Form.Control>
             </Form.Group>
-            <Form.Group controlId="zip" className="form-group">
+            <Form.Group controlId="zip" className='formMorgan'>
               <Form.Label>ZIP</Form.Label>
               <Form.Control
                 type="text"
@@ -226,6 +231,15 @@ function ContactFormScheduler() {
         <div style={{ textAlign: 'center' }}>
           <Button type="submit" variant="primary" className="btn btn-primary">
             Submit
+          </Button>
+          <Button
+            style={{ marginLeft:'20px'}}
+            type="button"
+            variant="info"
+            className="btn btn-info"
+            onClick={handleReset}
+          >
+            Reset
           </Button>
         </div>
       </Form>
