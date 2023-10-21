@@ -10,7 +10,11 @@ function ContactFormScheduler() {
     lastName: '',
     phone: '',
     email: '',
-    address: '',
+    street1: '',
+    street2: '',
+    city: '',
+    state: '',
+    zip: '',
     dateTime: null,
   });
 
@@ -66,12 +70,21 @@ function ContactFormScheduler() {
       <ul className="list-group">
         {Object.entries(data).map(([key, value]) => (
           <li className="list-group-item" key={key}>
-            <strong>{key}:</strong> {value}
+            <strong>{key}:</strong> {key === 'dateTime' ? value.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) : value}
           </li>
         ))}
       </ul>
     );
   };
+
+  const statesList = [
+    'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
+    'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas',
+    'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+    'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
+    'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
+    'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+  ];
 
   return (
     <Container>
@@ -125,13 +138,59 @@ function ContactFormScheduler() {
             className="form-control" // Bootstrap class
           />
         </Form.Group>
-        <Form.Group controlId="address" className="form-group">
-          <Form.Label>Delivery Address</Form.Label>
+        <Form.Group controlId="street1" className="form-group">
+          <Form.Label>Street 1</Form.Label>
           <Form.Control
-            as="textarea"
-            rows={3}
-            name="address"
-            value={formData.address}
+            type="text"
+            name="street1"
+            value={formData.street1}
+            onChange={handleChange}
+            className="form-control" // Bootstrap class
+          />
+        </Form.Group>
+        <Form.Group controlId="street2" className="form-group">
+          <Form.Label>Street 2</Form.Label>
+          <Form.Control
+            type="text"
+            name="street2"
+            value={formData.street2}
+            onChange={handleChange}
+            className="form-control" // Bootstrap class
+          />
+        </Form.Group>
+        <Form.Group controlId="city" className="form-group">
+          <Form.Label>City</Form.Label>
+          <Form.Control
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            className="form-control" // Bootstrap class
+          />
+        </Form.Group>
+        <Form.Group controlId="state" className="form-group">
+          <Form.Label>State</Form.Label>
+          <Form.Control
+            as="select"
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+            className="form-control" // Bootstrap class
+          >
+            <option value="">Select State</option>
+            {statesList.map((state, index) => (
+              <option key={index} value={state}>
+                {state}
+              </option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+        <Form.Group controlId="zip" className="form-group">
+          <Form.Label>ZIP</Form.Label>
+          <Form.Control
+            type="text"
+            name="zip"
+            value={formData.zip}
             onChange={handleChange}
             className="form-control" // Bootstrap class
           />
@@ -142,7 +201,7 @@ function ContactFormScheduler() {
             selected={formData.dateTime}
             onChange={handleDateChange}
             showTimeSelect
-            timeFormat="HH:mm"
+            timeFormat="h:mm aa" // Change the time format here
             timeIntervals={30}
             timeCaption="Time"
             dateFormat="MMMM d, yyyy h:mm aa"
@@ -157,7 +216,7 @@ function ContactFormScheduler() {
         </Button>
       </Form>
       {confirmation && (
-        <div className="mt-4" style={{paddingBottom: '30px'}}>
+        <div className="mt-4" style={{ paddingBottom: '30px' }}>
           <h4>Confirmation Data</h4>
           {renderConfirmationList(confirmation)}
         </div>
