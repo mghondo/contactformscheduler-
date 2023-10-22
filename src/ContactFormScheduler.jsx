@@ -101,7 +101,7 @@ function ContactFormScheduler() {
         <Row>
           <Col xs={12} md={6}>
           <Form.Group controlId="dateTime" className="form-group" style={{width: '120%', alignContent: 'center'}}>
-          <Form.Label>Choose Date and Time</Form.Label><br />
+          <Form.Label className='calenderarea'>Choose Date and Time</Form.Label><br />
           <DatePicker
             selected={formData.dateTime}
             onChange={handleDateChange}
